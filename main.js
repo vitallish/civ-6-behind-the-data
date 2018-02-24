@@ -54,9 +54,27 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-var chokidar = require('chokidar');
+/* var chokidar = require('chokidar');
 
 // One-liner for current directory, ignores .dotfiles
 chokidar.watch('.', {ignored: /(^|[\/\\])\../}).on('all', (event, path) => {
   console.log(event, path);
-});
+}); */
+
+
+const Config = require('electron-config');
+const config = new Config()
+const {ipcMain} = require('electron')
+
+
+// get run on new folder begin chosen
+ipcMain.on('async-file-path', (event, arg) => {
+	config.set("folder-path", arg);
+	// send the newly set folder path back to renderer
+	win.webContents.send("folder-path", config.get("folder-path"));
+})
+  
+ipcMain.on('settings-loaded', (event, arg) =>{
+	win.webContents.send("folder-path", config.get("folder-path"));
+})
+
