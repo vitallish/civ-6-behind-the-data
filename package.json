@@ -3,17 +3,21 @@
   "version": "0.1.0",
   "main": "main.js",
   "description": "a utility to log all turns taken in a civ game across sessions",
-  "repository" :{ 
-  "type" : "git"
-  , "url" : "https://github.com/vitallish/civ-6-behind-the-data"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vitallish/civ-6-behind-the-data"
   },
   "scripts": {
     "start": "electron ."
   },
-  "url" : "https://github.com/vitallish/civ-6-behind-the-data/issues",
+  "url": "https://github.com/vitallish/civ-6-behind-the-data/issues",
   "license": "Apache-2.0",
   "dependencies": {
     "chokidar": "^2.0.2",
     "electron-config": "^1.0.0"
+  },
+  "devDependencies": {
+    "electron": "1.8.2",
+    "electron-packager": "^11.0.1"
   }
 }
