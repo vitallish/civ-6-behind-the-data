@@ -2,21 +2,18 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Civ VI Turn Logger</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-	<p> Current Folder: </p>
+    <h1>Settings</h1>
+	<p>
+	Select the Civilizations VI folder that contains the Log folder. (do not select the Log folder!)
+	</p>
+	<p> Currently Selected Folder: </p>
 	<p id="p1"></p>
-	<input id = "filechoose" type="file"
-       webkitdirectory />
-	   
-	   
-
-	
+	<input id = "filechoose" type="file" webkitdirectory />
+	<p>Log:</p>
+	<p id = "log"></p>
   </body>
   <script src="js/renderer.js"></script>
 </html>

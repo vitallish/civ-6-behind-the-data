@@ -54,27 +54,48 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-/* var chokidar = require('chokidar');
+var chokidar = require('chokidar');
 
+var watcher 
 // One-liner for current directory, ignores .dotfiles
-chokidar.watch('.', {ignored: /(^|[\/\\])\../}).on('all', (event, path) => {
-  console.log(event, path);
-}); */
-
 
 const Config = require('electron-config');
 const config = new Config()
 const {ipcMain} = require('electron')
 
 
+
+function watchPlayerStats(civ_6_path){
+	var player_stats_path  = path.join(civ_6_path, "Logs","Player_Stats.csv")
+	watcher = chokidar.watch('file, dir, glob, or array', {
+		ignored: /(^|[\/\\])\../,
+		persistent: true,
+		awaitWriteFinish: true // waits 2 seconds before emitting event
+	});
+	watcher.add(player_stats_path)
+	watcher.on('change',(path, stats) => {
+		// This is where database write stuff will go
+		var file_log = {event: "changed",
+						path: path,
+						time: Date()}
+		win.webContents.send("file-change", file_log);
+	})
+}
+	
+
 // get run on new folder begin chosen
 ipcMain.on('async-file-path', (event, arg) => {
+	
+	watchPlayerStats(arg)
 	config.set("folder-path", arg);
 	// send the newly set folder path back to renderer
 	win.webContents.send("folder-path", config.get("folder-path"));
+	
 })
   
 ipcMain.on('settings-loaded', (event, arg) =>{
+		
+	watchPlayerStats(config.get("folder-path"))
 	win.webContents.send("folder-path", config.get("folder-path"));
 })
 
