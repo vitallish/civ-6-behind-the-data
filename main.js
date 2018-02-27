@@ -91,7 +91,8 @@ function watchPlayerStats(civ_6_path){
 		win.webContents.send("file-change", file_log);
 	})
 }
-	
+
+require(path.resolve('js/model.js'))
 
 // get run on new folder begin chosen
 ipcMain.on('async-file-path', (event, arg) => {
