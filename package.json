@@ -17,6 +17,7 @@
   "dependencies": {
     "chokidar": "^2.0.2",
     "electron-config": "^1.0.0",
+    "sequelize": "^4.34.1",
     "sqlite3": "^3.1.13"
   },
   "devDependencies": {
